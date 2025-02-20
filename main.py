@@ -39,9 +39,7 @@ with col2 :
 # Prediksi
 if st.button("Prediksi"):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
-    input_scaled = scaler.transform(input_data)
     prediction = model.predict(input_scaled)
-    probability = model.predict_proba(input_scaled)[0][1]
 
     if prediction[0] == 1:
         st.error(f"Prediksi: **Pasien Terkena Diabetes**")
