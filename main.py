@@ -38,7 +38,7 @@ def load_model():
 # Prediksi
 if st.button("Prediksi"):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
-    model, scaler = pickle.load(f)
+    model, scaler = pickle.load
     prediction = model.predict(input_scaled)
 
     if prediction[0] == 1:
