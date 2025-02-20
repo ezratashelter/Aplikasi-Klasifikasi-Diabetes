@@ -15,7 +15,6 @@ def load_model():
     with open("svm_model.pkl", "rb") as f:
         model, scaler = pickle.load(f)
     return model, scaler
-
 model, scaler = load_model()
 
 # Input data dari user
