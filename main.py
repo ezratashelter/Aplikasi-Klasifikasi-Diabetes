@@ -16,8 +16,6 @@ def load_model():
         model, scaler = pickle.load(f)
     return model, scaler
 
-model, scaler = load_model()
-
 # Input data dari user
 col1, col2 = st.columns(2)
 
