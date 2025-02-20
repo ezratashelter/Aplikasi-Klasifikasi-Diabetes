@@ -9,13 +9,6 @@ st.title("Prediksi Diabetes dengan SVM")
 # Deskripsi aplikasi
 st.write("Masukkan data kesehatan Anda untuk mengetahui risiko diabetes.")
 
-
-# Load model
-def load_model():
-    with open("svm_model.pkl", "rb") as f:
-        model, scaler = pickle.load(f)
-    return model, scaler
-
 # Input data dari user
 col1, col2 = st.columns(2)
 
@@ -35,6 +28,12 @@ with col1 :
     dpf = st.number_input("Diabetes Pedigree Function", min_value=0.0, max_value=2.5)
 with col2 :
     age = st.number_input("Usia", min_value=0, max_value=120)
+
+# Load model
+def load_model():
+    with open("svm_model.pkl", "rb") as f:
+        model, scaler = pickle.load(f)
+    return model, scaler
 
 # Prediksi
 if st.button("Prediksi"):
