@@ -2,12 +2,23 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
 
 # Judul aplikasi
 st.title("Prediksi Diabetes dengan SVM")
 
 # Deskripsi aplikasi
 st.write("Masukkan data kesehatan Anda untuk mengetahui risiko diabetes.")
+
+
+# Load model
+def load_model():
+    with open("svm_model.pkl", "rb") as f:
+        model, scaler = pickle.load(f)
+    return model, scaler
+
+model, scaler = load_model()
 
 # Input data dari user
 col1, col2 = st.columns(2)
@@ -29,17 +40,12 @@ with col1 :
 with col2 :
     age = st.number_input("Usia", min_value=0, max_value=120)
 
-# Load model
-def load_model():
-    with open("svm_model.pkl", "rb") as f:
-        model, scaler = pickle.load(f)
-    return model, scaler
-
 # Prediksi
 if st.button("Prediksi"):
     input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, dpf, age]])
-    model, scaler = pickle.load
+    input_scaled = scaler.transform(input_data)
     prediction = model.predict(input_scaled)
+    probability = model.predict_proba(input_scaled)[0][1]
 
     if prediction[0] == 1:
         st.error(f"Prediksi: **Pasien Terkena Diabetes**")
