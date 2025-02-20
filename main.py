@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.svm import SVC
 
 # Judul aplikasi
 st.title("Prediksi Diabetes dengan SVM")
